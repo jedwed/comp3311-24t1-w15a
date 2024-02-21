@@ -7,11 +7,25 @@
 - Practice Exercises and Tutorial Exercises aren't marked, but it's important you do them!
   - Do Practice Exercise 01 **immediately**: set up PostgreSQL, required for assignments and exams
 
-## Today
+## Today: Data Modelling
 
-### Data Modelling
+Requirements -> ER Model -> Relational Model -> Database Schema
 
-- ER Modelling
-  - Q6, Q9, Q10
-- Relational Modelling
-  - Q16, Q18, Q19
+### ER Model
+
+- High-level conceptual level model which translates real world objects & requirements into:
+- 3 key constructs: Entities, Relationships, Attributes
+- Q6, Q9, Q10
+
+![](./unsw_er_diagram.jpg)
+
+- One thing I missed during the tutorial (:/): Student and Lecturer entities **inherit** from Person
+  - This ensures zID is unique across students and lecturers, which wouldn't be the case without inheritance
+
+## Relational Model
+
+- Obtained by **ER-Relational Mapping** (covered in Week 2 Lectures & next tutorial)
+- 1 key constructs: Relations (which are **tables**)
+- Tuples are table rows
+- Primary key must be unique and not null
+- Q16, Q18, Q19
