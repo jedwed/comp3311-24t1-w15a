@@ -25,7 +25,9 @@ Requirements -> ER Model -> Relational Model -> Database Schema
 ## Relational Model
 
 - Obtained by **ER-Relational Mapping** (covered in Week 2 Lectures & next tutorial)
+- Low-level, SQL databases are **relational**
 - 1 key constructs: Relations (which are **tables**)
 - Tuples are table rows
 - Primary key must be unique and not null
+- Foreign key is a reference to another relation/table via its primary key
 - Q16, Q18, Q19
