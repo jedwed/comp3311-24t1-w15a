@@ -14,7 +14,12 @@ Requirements -> ER Model -> Relational Model -> Database Schema
 ### ER Model
 
 - High-level conceptual level model which translates real world objects & requirements into:
-- 3 key constructs: Entities, Relationships, Attributes
+- 3 key constructs:
+  1. Entities
+  2. Attributes
+  3. Relationships
+  - Participation (**total** or partial)
+  - Cardinality (1:1, 1:n, n:m)
 - Q6, Q9, Q10
 
 ![](./unsw_er_diagram.jpg)
@@ -26,8 +31,8 @@ Requirements -> ER Model -> Relational Model -> Database Schema
 
 - Obtained by **ER-Relational Mapping** (covered in Week 2 Lectures & next tutorial)
 - Low-level, SQL databases are **relational**
-- 1 key constructs: Relations (which are **tables**)
+- 1 key construct: Relations (which are **tables**)
 - Tuples are table rows
-- Primary key must be unique and not null
+- <u>Primary key</u> must be unique and not null
 - Foreign key is a reference to another relation/table via its primary key
 - Q16, Q18, Q19
