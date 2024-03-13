@@ -39,11 +39,13 @@ begin
     if not found then
         return 'There is no hotel called ' || _hotel;
     end if;
+
     -- non-existent beer (invalid beer name)
     select count(*) into _counter from Beers where name = _beer;
     if _counter = 0 then
         return 'There is no beer called '|| _beer;
     end if;
+
     select price into _std_price
     from Sells
     where bar = _hotel and beer = _beer;
