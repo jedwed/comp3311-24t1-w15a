@@ -13,9 +13,10 @@
 -- );
 -- I stupidly wrote redundant outer queries like the above during the tutoral :/
 
-select sid 
-from   Catalog AS C
-join   Parts AS P on C.pid = P.pid 
+select S.sname 
+from   Suppliers as S
+from   Catalog as C
+join   Parts as P on C.pid = P.pid 
 where  P.colour = 'red';
 
 /*
@@ -24,8 +25,8 @@ where  P.colour = 'red';
  */
 
 select sid 
-from   Catalog AS C
-join   Parts AS P on C.pid = P.pid 
+from   Catalog as C
+join   Parts as P on C.pid = P.pid 
 where  P.colour = 'red' or P.colour = 'green';
 
 
@@ -72,5 +73,10 @@ where not exists (
     select C.pid
     from Catalog AS C
     where C.sid = S.sid
-)
+);
+
+/*
+ * Q22
+ * Find the pids of the most expensive part(s) supplied by suppliers named "Yosemite Sham".
+ */
 
