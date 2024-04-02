@@ -29,7 +29,7 @@ begin
 end
 $$ language plpgsql;
 
-create aggregate my_average (numeric) (
+create or replace aggregate my_average (numeric) (
     sfunc = compute_state,
     stype = StateType,
     initcond = '(0, 0)',
