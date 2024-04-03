@@ -1,0 +1,54 @@
+#!/usr/bin/python3
+
+import sys
+import psycopg2
+
+conn = None
+
+if len(sys.argv) < 2:
+    print(f"Usage: {sys.argv[0]} school")
+    exit(1)
+school_name = sys.argv[1]
+
+
+# Find the ord/school id given the name
+# '~*' is a Regular Expression Match Operator:
+# https://www.postgresql.org/docs/current/functions-matching.html
+school_query = """
+select id, longname
+from OrgUnits
+where longname ~* %s
+"""
+
+# Find the number of subjects that a school offers
+no_subjects_query = """
+select count(*)
+from Subjects
+where offeredby = %s
+"""
+
+try:
+    conn = psycopg2.connect(dbname="uni")
+    cur = conn.cursor()
+
+    cur.execute(school_query, (school_name,))
+    schools = cur.fetchall()
+    if len(schools) == 0:
+        print("No such school")
+    elif len(schools) > 1:
+        for school in schools:
+            print(school[1])
+    else:
+        school_id, school_name = schools[0]
+        cur.execute(no_subjects_query, (school_id,))
+        res = cur.fetchone()
+        if not res:
+            print("School is invalid")
+            sys.exit(0)
+        num_subjects = res[0]
+        print(f"{school_name} teaches {num_subjects} subjects")
+except psycopg2.Error as err:
+    print("database error: ", err)
+finally:
+    if conn is not None:
+        conn.close()

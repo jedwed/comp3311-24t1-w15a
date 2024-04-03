@@ -2,6 +2,8 @@
 import sys
 import psycopg2
 
+
+conn = None
 if len(sys.argv) < 2:
     print("Usage: opendb DBname")
     exit(1)

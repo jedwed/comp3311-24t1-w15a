@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+import sys
+import psycopg2
+
+
+conn = None
+if len(sys.argv) < 3:
+    print("Usage: course-roll subject term")
+    exit(1)
+
+subject_code = sys.argv[1]
+term_code = sys.argv[2]
+
+# TODO: The students that are enrolled in {subject_code} during {term_code}
+students_query = """
+select p.id, p.family, p.given
+from People p
+join Students stu on p.id = stu.id
+join Course_enrolments ce on stu.id = ce.student
+join Courses c on ce.course = c.id
+join Subjects s on c.subject = s.id
+join Terms t on c.term = t.id
+where s.code = %s and t.code = %s
+order by p.family, p.given
+"""
+
+try:
+    conn = psycopg2.connect(f"dbname=uni")
+    cur = conn.cursor()
+    cur.execute(students_query, [subject_code, term_code])
+    students = cur.fetchall()
+
+    print(f"{subject_code} {term_code}")
+
+    # TODO: print out a message if there are no students enrolled
+    if len(students) == 0:
+        print("No students")
+        exit(0)
+
+    for student in students:
+        student_id, family_name, given_name = student
+        print(f"{student_id} {family_name}, {given_name}")
+except psycopg2.Error as err:
+    print("database error: ", err)
+finally:
+    if conn is not None:
+        conn.close()
