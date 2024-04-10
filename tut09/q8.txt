@@ -1,6 +1,8 @@
-Consider (yet another) banking application that contains information about accounts, branches and customers.
+Consider (yet another) banking application that contains information about 
+accounts, branches and customers.
 Each account is held at a specific branch,
-but a customer may hold more than one account and an account may have more than one associated customer.
+but a customer may hold more than one account 
+and an account may have more than one associated customer.
 
 Consider an unnormalised relation containing all of the attributes that are relevant to this application:
 
@@ -16,5 +18,36 @@ i.e. consider the relation R(acct#, branch#, tfn, kind, balance, city, name)
 
 Based on the above description:
 a. Devise a suitable set of functional dependencies among these attributes.
+- acct# -> balance, branch#, kind
+- tfn -> name
+- branch# -> city
 b. Using these functional dependencies, decompose R into a set of 3NF relations.
+1. Determinal the minimal cover
+All of our functional dependencies is the minimal cover
+
+2. Flattening functional dependencies
+Account(acct#, balance, branch#, kind)
+People(tfn, name)
+Branch(branch#, city)
+
+3. 
+Determine the candidate key
+(acct#, tfn)+ = {acct#, balance, branch#, kind, city, tfn, name}
+(acct#, tfn) is a candidate key for the unnormalised relation
+
+(acct#, tfn) is not part of any relation
+Therefore, we add to our schema table a new table
+PersonOwnsAccount(acct#, tfn)
+
+
+Final schema: 
+
+Account(acct#, balance, branch#, kind)
+People(tfn, name)
+Branch(branch#, city)
+PersonOwnsAccount(acct#, tfn)
+
+
 c. State whether the new relations are also in BCNF.
+Yes, the relations are also in BCNF, 
+because for all functional dependencies, the dependent (LHS) is a candidate key

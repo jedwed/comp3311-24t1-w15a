@@ -3,8 +3,54 @@ the set of functional dependencies F = { A → B, BC → E, ED → A }
 
 a. 
 List candidate keys of R
+Candidate key a minimal superkey: all other attributes derivable
+
+ABCDE is a superkey
+
+Reduce superkey ABCDE with fd A -> B to ACDE
+Can't reduce superkey ACDE with BC -> E because B doesn't exist
+Reduce superkey ACDE with ED -> A to CDE
+Candidate key found: CDE
+CDE+ = {C, D, E, A, B}
+
+Reduce superkey ABCDE with fd BC -> E to ABCD
+Reduce superkey ABCD with fd A -> B to ACD
+Can't reduce superkey ACD with fd ED -> A because ED doesn't exist
+Candidate key found: ACD
+
+Repeat reducing superkey ABCDE starting with ED -> A
+
+Eventually: 3 candidate keys are CDE, ACD, BCD.
 
 b. 
 Is R in third normal form (3NF)?
 
+A -> B is not trivial
+A is not a superkey
+B is a subset of any candidate key
+A -> B meets the requirements for 3NF
+
+BC -> E is not trivial
+BC is not a superkey 
+E is a subset of candidate key CDE
+BC -> E
+
+ED -> A is not trivial
+ED is not a superkey
+A is a subset of a candidate key ACD
+
+Because all three functional dependencies meet the requirements,
+Our relation R is in 3NF
+
+
+
 c. Is R in Boyce-Codd normal form (BCNF)?
+R(A, B, C, D, E)
+F = { A → B, BC → E, ED → A }
+Eventually: 3 candidate keys are CDE, ACD, BCD.
+
+A -> B is not trivial
+A is not a superkey
+A -> B violates both rules for BCNF
+
+Therefore R is not in BCNF

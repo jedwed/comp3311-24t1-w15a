@@ -2,7 +2,7 @@ a.
 What functional dependencies are implied if we know that
 a set of attributes X is a candidate key for a relation R?
 
-Answer:
+Answer: X determines every other attribute of the relation R
 
 
 b. 
@@ -18,6 +18,9 @@ What functional dependencies can we infer do not hold by inspection of the follo
 | b   | 2   | z   |
 
 Answer:  
+A -> C, B -> C, AB -> C do not hold
+The rest is left as an exercise to the reader
+
 
 c. 
 Suppose that we have a relation schema R(A,B,C)
@@ -25,4 +28,17 @@ representing a relationship between two entity sets E and F with keys A and B re
 and suppose that R has (at least) the functional dependencies A → B and B → A.
 Explain what this tells us about the relationship between E and F.
 
-Answer:
+Extracting info from the question:
+Entity set E has primary key A and 
+Entity set F has primary key B
+
+A -> B: For every value for attribute A, there is only one corresponding B value
+B -> A: For every value for attribute B, there is only one correspondiong A value
+
+Answer: There is a one-to-one relationship between entity sets E and F
+
+
+
+
+
+

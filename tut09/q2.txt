@@ -2,6 +2,6 @@ Consider the relation R(A,B,C,D,E,F,G) and
 the set of functional dependencies F = { A → B, BC → F, BD → EG, AD → C, D → F, BEG → FA }.
 Compute the following:
 
-- A+
-- ACEG+
-- BD+
+- A+ = { A, B }
+- ACEG+ = { A, C, E, G, B, F } = { A, B, C, E, F, G }
+- BD+ = Left as an exercise for the reader
