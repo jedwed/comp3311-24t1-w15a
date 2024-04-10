@@ -1,0 +1,10 @@
+Consider the relation R(A,B,C,D,E) and
+the set of functional dependencies F = { A → B, BC → E, ED → A }
+
+a. 
+List candidate keys of R
+
+b. 
+Is R in third normal form (3NF)?
+
+c. Is R in Boyce-Codd normal form (BCNF)?

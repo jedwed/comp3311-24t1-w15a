@@ -1,0 +1,7 @@
+Consider the relation R(A,B,C,D,E,F,G) and
+the set of functional dependencies F = { A → B, BC → F, BD → EG, AD → C, D → F, BEG → FA }.
+Compute the following:
+
+- A+
+- ACEG+
+- BD+
